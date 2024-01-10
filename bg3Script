@@ -1,0 +1,71 @@
+BG3 script
+
+party = {} for k,d in ipairs(Osi.DB_PartyMembers:Get(nil)) do table.insert(party,d[1]) end for k,d in ipairs(Osi.DB_PartyMembers:Get(nil)) do Osi.DB_Is_InCombat:Delete(d[1], nil) end for i,v in ipairs(Osi.DB_Is_InCombat:Get(nil,nil)) do for i = #party,1,-1 do if(IsEnemy(v[1],party[i]) == 1) then x,y,z = GetPosition(v[1]) Print(v[1]) end end end
+party = {} for k,d in ipairs(Osi.DB_PartyMembers:Get(nil)) do table.insert(party,d[1]) end for k,d in ipairs(Osi.DB_PartyMembers:Get(nil)) do Osi.DB_Is_InCombat:Delete(d[1], nil) end for i,v in ipairs(Osi.DB_Is_InCombat:Get(nil,nil)) do for i = #party,1,-1 do if(IsEnemy(v[1],party[i]) == 1) then local x,y,z = GetPosition(v[1]) Print(v[1]) CreateAt("S_GLO_OathbreakerKnight_3939625d-86cc-4395-9d50-4f8b846c4231", x, y, z, 0, 0, "") end end end
+
+Osi.SetFaction(target,GetFaction(Main_Character))
+
+party = {}
+
+party = {}
+
+for key, item in ipairs(Osi.DB_PartyMembers:Get(nil)) do
+    table.insert(party,item[1])
+end
+
+for key, item in ipairs(Osi.DB_PartyMembers:Get(nil)) do
+    Osi.DB_Is_InCombat:Delete(item[1], nil)
+end  enemyWithDoublon = {}
+
+for key, item in ipairs(Osi.DB_Is_InCombat:Get(nil,nil)) do
+    for i = #party,1,-1 do        
+        if(IsEnemy(item[1],party[i]) == 1) then
+            table.insert (enemyWithDoublon, item[1])
+        end
+    end
+end 
+
+local seen = {} enemy = {}
+for key,item in ipairs(enemyWithDoublon) do
+    if (not seen[item]) then
+        table.insert(enemy, item)        
+        seen[item] = true   
+    end
+end 
+
+for key, item in ipairs(enemy) do   
+    print (item)     
+    x,y,z = GetPosition(item) 
+    xR = Random(2) * 7 
+    if (xR == 0) then xR = -7 end 
+    yR = Random(2) * 7 
+    if (yR == 0) then yR = -7 end   
+    template = GetTemplate (item)  
+    newGuy = CreateAt (template, x + xR, y + yR, z, 1, 0, "") 
+    if (newGuy == nil) then
+        newGuy = CreateAt (template, x, y, z, 1, 0, "") 
+    end
+    Transform(newGuy, item, "60434d3e-38ce-4b74-a483-cf88fa2940ac")
+    Osi.SetFaction(newGuy,GetFaction(item)) Osi.CopyCharacterEquipment (newGuy, item) 
+
+    print (item)     
+    x,y,z = GetPosition(item) 
+    xR = Random(2) * 7 
+    if (xR == 0) then xR = -7 end 
+    yR = Random(2) * 7 
+    if (yR == 0) then yR = -7 end   
+    template = GetTemplate (item)  
+    newGuy = CreateAt (template, x + xR, y + yR, z, 1, 0, "") 
+    if (newGuy == nil) then
+        newGuy = CreateAt (template, x, y, z, 1, 0, "") 
+    end
+    Transform(newGuy, item, "60434d3e-38ce-4b74-a483-cf88fa2940ac")
+    Osi.SetFaction(newGuy,GetFaction(item)) Osi.CopyCharacterEquipment (newGuy, item) 
+end 
+
+party = {} for k,d in ipairs(Osi.DB_PartyMembers:Get(nil)) do table.insert(party,d[1]) end for k,d in ipairs(Osi.DB_PartyMembers:Get(nil)) do Osi.DB_Is_InCombat:Delete(d[1], nil) end for i,v in ipairs(Osi.DB_Is_InCombat:Get(nil,nil)) do for i = #party,1,-1 do if(IsEnemy(v[1],party[i]) == 1) then x,y,z = GetPosition(v[1]) CreateProjectileStrikeAtPosition(x,y,z,"Projectile_WitchBolt") Die(v[1],4,1) end end end
+
+party = {}  for key, item in ipairs(Osi.DB_PartyMembers:Get(nil)) do     table.insert(party,item[1]) end for key, item in ipairs(Osi.DB_PartyMembers:Get(nil)) do     Osi.DB_Is_InCombat:Delete(item[1], nil) end  enemyWithDoublon = {} for key, item in ipairs(Osi.DB_Is_InCombat:Get(nil,nil)) do     for i = #party,1,-1 do         if(IsEnemy(item[1],party[i]) == 1) then             table.insert (enemyWithDoublon, item[1])         end     end end  local seen = {} enemy = {} for key,item in ipairs(enemyWithDoublon) do    if (not seen[item]) then        table.insert(enemy, item)        seen[item] = true    end end  for key, item in ipairs(enemy) do     print (item)     x,y,z = GetPosition(item) xR = Random(2) * 5 if (xR == 0) then xR = -5 end yR = Random(2) * 5 if (yR == 0) then yR = -5 end   template = GetTemplate (item) print (xR) print (yR)     newGuy = CreateAt (template, x + xR, y + yR, z, 1, 0, "") if (newGuy == nil) then  newGuy = CreateAt (template, x, y, z, 1, 0, "") end    Transform(newGuy, item, "60434d3e-38ce-4b74-a483-cf88fa2940ac")  Osi.SetFaction(newGuy,GetFaction(item)) Osi.CopyCharacterEquipment (newGuy, item) end 
+
+party = {}  for key, item in ipairs(Osi.DB_PartyMembers:Get(nil)) do     table.insert(party,item[1]) end for key, item in ipairs(Osi.DB_PartyMembers:Get(nil)) do     Osi.DB_Is_InCombat:Delete(item[1], nil) end  enemyWithDoublon = {} for key, item in ipairs(Osi.DB_Is_InCombat:Get(nil,nil)) do     for i = #party,1,-1 do         if(IsEnemy(item[1],party[i]) == 1) then             table.insert (enemyWithDoublon, item[1])         end     end end  local seen = {} enemy = {} for key,item in ipairs(enemyWithDoublon) do     if (not seen[item]) then         table.insert(enemy, item)                 seen[item] = true        end end   for key, item in ipairs(enemy) do        print (item)          x,y,z = GetPosition(item)      xR = Random(2) * 7      if (xR == 0) then xR = -7 end      yR = Random(2) * 7      if (yR == 0) then yR = -7 end        template = GetTemplate (item)       newGuy = CreateAt (template, x + xR, y + yR, z, 1, 0, "")      if (newGuy == nil) then         newGuy = CreateAt (template, x, y, z, 1, 0, "")      end     Transform(newGuy, item, "60434d3e-38ce-4b74-a483-cf88fa2940ac")     Osi.SetFaction(newGuy,GetFaction(item)) Osi.CopyCharacterEquipment (newGuy, item)       print (item)          x,y,z = GetPosition(item)      xR = Random(2) * 7      if (xR == 0) then xR = -7 end      yR = Random(2) * 7      if (yR == 0) then yR = -7 end        template = GetTemplate (item)       newGuy = CreateAt (template, x + xR, y + yR, z, 1, 0, "")      if (newGuy == nil) then         newGuy = CreateAt (template, x, y, z, 1, 0, "")      end     Transform(newGuy, item, "60434d3e-38ce-4b74-a483-cf88fa2940ac")     Osi.SetFaction(newGuy,GetFaction(item)) Osi.CopyCharacterEquipment (newGuy, item)  end 
+ 
